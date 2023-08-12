@@ -1,8 +1,0 @@
-palavra de entrada;resultado esperado;resultado obtido;tempo de execução
-aabbbbbaaaaabababababbab;1;1;0.0
-aaabb;1;1;0.0
-bbb;1;1;0.0
-ab;0;0;0.0
-baba;0;0;0.0
-abab;0;0;0.0
-baabaa;1;1;0.0
