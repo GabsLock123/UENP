@@ -4,7 +4,7 @@ import csv
 import time
 
 # Variável com o caminho para o arquivo JSON
-automato_json = 'AFD.json'
+automato_json = 'AFND.json'
 
 # Abertura do arquivo JSON para leitura e carregamento dos dados para a variável dados, utilizando json.load()
 with open(automato_json, 'r') as automato:
@@ -12,15 +12,16 @@ with open(automato_json, 'r') as automato:
 
 # Criação do dicionário vazio para armazenar as transições
 transitions = {}
-# Dentro do loop for, é extraído o estado de origem, estado de destino e a entrada lida
-# Caso a entrada consista em várias letras separadas por vírgulas, são divididas em lista usando a função split()
-# Cada combinação de estado de origem e entrada é armazenada como uma chave no dicionário "transitions" e o estado de destino é atribuído como o valor correspondente
-for transition in dados['structure']['automaton']['transition']: 
+# Loop que extrai, para cada posição, o estado de origem (from_state), estado de destino (to_state) e informações de leitura (reads) a partir do objeto de dados
+for transition in dados['structure']['automaton']['transition']:
     from_state = transition['from']
     to_state = transition['to']
     reads = transition['read'].split(", ")
     for read in reads:
-        transitions[(from_state, read)] = to_state
+        if (from_state, read) in transitions:
+            transitions[(from_state, read)].add(to_state)
+        else:
+            transitions[(from_state, read)] = {to_state}
 
 # Variável com o caminho para o arquivo CSV de entrada de testes
 automato_csv = 'arquivo_de_testes.csv'
@@ -39,25 +40,27 @@ with open(automato_csv, 'r', newline='') as csvfile:
         dados_csv.append((palavra_entrada, int(resultado_esperado)))
 
 # Um novo arquivo CSV é criado para escrita e armazenamento dos resultados
-with open('resultadoAFD.csv', 'w', newline='') as csvfile:
-    # Escritor criado com o delimitador ";" especificado
+with open('resultado_AFND.csv', 'w', newline='') as csvfile:
     writer = csv.writer(csvfile, delimiter=';')
-    # A primeira linha é escrita para representar o cabeçalho
     writer.writerow(['palavra de entrada', 'resultado esperado', 'resultado obtido', 'tempo de execução'])  # cabeçalho
 
     # Processa cada entrada de teste
     for palavra_entrada, resultado_esperado in dados_csv:
-        # Inicio do processamento também representa o inicio da contagem de tempo
+        # Inicio do processamento que também representa o inicio da contagem de tempo
+        # Processa cada palavra de entrada, encontra os estados alcançáveis a partir do estado inicial através das transições 
+        # correspondentes a cada caractere e verifica se o estado de aceitação é alcançado
         inicio = time.time()
-        estado_atual = 0  # Considerando que 0 é o estado inicial
+        estados_atuais = {0}  # Considerando que 0 é o estado inicial
         for caracter in palavra_entrada:
-            estado_atual = transitions.get((estado_atual, caracter), None)
-            if estado_atual is None:  # transição não definida
-                break
+            novos_estados = set()
+            for estado in estados_atuais:
+                transicoes = transitions.get((estado, caracter), set())
+                novos_estados = novos_estados.union(transicoes)
+            estados_atuais = novos_estados
         fim = time.time()
         # Após finalizar o processamento da entrada, obtém-se de novo o tempo e este é subtraído do inicial para que se possa ter o tempo de execução
         tempo_de_execucao = fim - inicio
-        resultado_obtido = int(estado_atual == 2)  # Considerando que 2 é o estado de aceitação
-        writer.writerow([palavra_entrada, resultado_esperado, resultado_obtido, tempo_de_execucao])
+        resultado_obtido = int(2 in estados_atuais)  # Considerando que 2 é o estado de aceitação
+        writer.writerow([palavra_entrada, resultado_esperado, resultado_obtido, tempo_de_execucao]) 
 
-print("Resultado salvo em resultadoAFD.csv")
+print("Resultado salvo em resultado_AFND.csv")
