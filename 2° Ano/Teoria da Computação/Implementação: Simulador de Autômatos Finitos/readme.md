@@ -1,7 +1,21 @@
-<p>blablablalbla</p> <!-- Comando para o parágrafo, caso utilize mais de um parágrafo em baixo de outro, a linha será automaticamente quebrada-->
-<h1>sasasasa</h1> <!-- Comando para cabeçalho, vai de h1 até h6. h1: maior cabeçalho / h6: menor cabeçalho-->
-<h6>sim</h6> <!-- Comando para cabeçalho, vai de h1 até h6. h1: maior cabeçalho / h6: menor cabeçalho-->
-<img src= "https://img.olhardigital.com.br/wp-content/uploads/2019/11/20191126014859.jpg" /> <!-- Comando para inserir imagem. Caso precise inserir um print da tela mostrando algum trecho do código ou algo do tipo, faça o upload desse print no google drive, clique na opção de compartilhar, defina-o como público e compartilhe o link da imagem dentro do comando-->
-<br> <!-- Comando para quebra de linha, você pode utilizar mais de um <br> caso queira aumentar o espaçamento entre um texto e outro (ou de uma imagem para texto e vice-versa)-->
-<hr> <!-- Comando para adicionar uma linha horizontal, bom para organizar e embelezar a aparência, além disso, se houver um texto em cima e outro embaixo do <hr>, o texto de baixo automaticamente irá para baixo da linha-->
- 
+# Relatório Implementação Autômato Finito
+
+Neste relatório descrevemos o processo de implementação de autômatos finitos, incluindo autômatos determinísticos, não determinísticos e autômatos com estado vazio.
+
+## Conversão do Arquivo XML para JSON
+
+Começamos criando um arquivo XML no JFLAP e, em seguida, utilizamos um conversor online para transformá-lo em formato JSON. Essa etapa resultou em um arquivo JSON para cada tipo de autômato.
+
+## Preparação do Arquivo CSV
+
+Criamos um arquivo .CSV para armazenar as entradas que serão testadas nos autômatos. Isso permitiu uma fácil importação das entradas durante a fase de teste.
+
+## Implementação do Simulador
+
+Utilizamos a linguagem de programação Python para implementar um simulador para cada tipo de autômato criado. Cada simulador foi desenvolvido de acordo com as regras e comportamentos específicos do tipo de autômato correspondente.
+
+## Funcionamento do Simulador
+
+Ao inserir um autômato, independentemente de ser um autômato determinístico, não determinístico ou com estado vazio, o simulador correspondente ao tipo de autômato é acionado. Isso permite testar e observar o comportamento do autômato em relação às diferentes entradas.
+
+Esse processo de implementação e teste nos proporcionou uma compreensão mais profunda das características e funcionamento dos autômatos finitos em suas várias formas.
