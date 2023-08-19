@@ -41,7 +41,7 @@ for transition in dados['structure']['automaton']['transition']:
             transitions[(from_state, read)] = {to_state}
 
 # Variável com o caminho para o arquivo CSV de entrada de testes
-automato_csv = 'arquivo_de_testes.csv'
+automato_csv = 'input.csv'
 
 # Lista para armazenar os dados do CSV
 dados_csv = []
