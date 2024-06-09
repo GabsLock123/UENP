@@ -11,6 +11,7 @@ Este é um projeto de um interpretador simples de C# que pode ler e executar ope
 - ➖ Operações de subtração (`4 - 2`)
 - ✖️ Operações de multiplicação (`3 * 4`)
 - ➗ Operações de divisão (`10 / 2`)
+- 🅰️ Operações envolvendo variáveis (`a = a * 8`)
 - 📢 Comando de impressão (`PRINT 5 + 3`)
 - 📚 Suporte a expressões complexas com parênteses (`(2 + 3) * 4`)
 
@@ -34,6 +35,7 @@ This is a simple C# interpreter project that can read and execute basic mathemat
 - ➖ Subtraction operations (`4 - 2`)
 - ✖️ Multiplication operations (`3 * 4`)
 - ➗ Division operations (`10 / 2`)
+- 🅰️ Operations involving variables (`a = a * 2`)
 - 📢 Print command (`PRINT 5 + 3`)
 - 📚 Support for complex expressions with parentheses (`(2 + 3) * 4`)
 
